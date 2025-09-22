@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Notes → Session</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <style>
+    /* small niceties for the home screen */
+    .home main { max-width: 860px; margin: 40px auto; padding: 0 16px; }
+    form[action="/start"] { display: grid; gap: 12px; background:#0f131b; padding:16px; border-radius:16px; border:1px solid #20283a; }
+    form[action="/start"] label { display: grid; gap: 6px; }
+    .sessions { margin-top: 24px; }
+    .sessions ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .sessions li { display:flex; align-items:center; gap:10px; background:#0f131b; border:1px solid #20283a; padding:10px 12px; border-radius:12px; }
+    .sessions li a { flex: 1 1 auto; }
+    .sessions form { display:inline-block; }
+    .inline-btn { display:inline-flex; align-items:center; gap:6px; }
+  </style>
+</head>
+<body class="home">
+  <main>
+    <h1>Notes → Teaching Session</h1>
+
+    <!-- Start Session -->
+    <form action="/start" method="post" enctype="multipart/form-data" autocomplete="off">
+      <label>Session name (unique):
+        <input type="text" name="session_name" required maxlength="120"
+               placeholder="e.g., Microeconomics — Week 3">
+      </label>
+
+      <label>Session length (minutes):
+        <input id="len" type="range" name="minutes" min="15" max="120" step="5" value="30" aria-label="Session length in minutes">
+        <span id="lenv">30m</span>
+      </label>
+
+      <label>Upload notes (.md, multiple):
+        <input type="file" name="notes" accept=".md" multiple required>
+      </label>
+
+      <label>Optional syllabus (.md/.txt lines):
+        <input type="file" name="syllabus" accept=".md,.txt">
+      </label>
+
+      <label>Optional question bank:
+        <input type="file" name="question_bank" accept=".md,.txt">
+      </label>
+
+      <button class="primary" type="submit">Start Session</button>
+    </form>
+
+    <script>
+      const r = document.getElementById('len');
+      const v = document.getElementById('lenv');
+      if (r && v) r.addEventListener('input', () => v.textContent = r.value + 'm');
+    </script>
+
+    <section class="sessions">
+      <h2>Open or delete a session</h2>
+      <ul>
+        {% for s in recent %}
+          <li>
+            <a href="/session/{{ s.id }}">{{ s.name }}</a>
+            <span class="muted">({{ s.created_at }})</span>
+            <form method="post" action="/session/{{ s.id }}/delete" class="inline-btn">
+              <button class="btn small outline" onclick="return confirm('Delete this session?')">Delete</button>
+            </form>
+          </li>
+        {% else %}
+            <li class="muted">No sessions yet.</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

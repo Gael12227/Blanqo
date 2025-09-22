@@ -1,0 +1,1 @@
+Price elasticity of demand measures responsiveness of quantity demanded to price changes.

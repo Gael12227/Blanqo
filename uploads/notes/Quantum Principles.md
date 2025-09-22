@@ -1,0 +1,88 @@
+Module 1 of Engineering Physics (BAPHY105) focuses on Wave-Particle Duality. This module spans 8 hours of lecture content. The primary objectives of the course, which Module 1 introduces, include understanding the origin and importance of quantum mechanics, studying its principles, and applying them to quantum computing.
+Classical Physics and its Limitations
+At the end of the 19th century, classical physics, which described discrete particles with energy and momentum using Newtonian Classical Mechanics and continuous waves with frequency and wavelength using Maxwell’s Electromagnetic theory, faced significant challenges. It failed to explain various microscopic phenomena and how light interacts with matter.
+Some key phenomena that classical physics could not adequately explain include:
+• Instability of atoms: Classically, an orbiting electron, being an accelerating charge, should continuously emit radiation, lose energy, and eventually spiral into the nucleus, leading to atomic collapse. This contradicts the observed stability of atoms.
+• Double-slit experiment: When performed with electrons, classical physics predicts particle-like behavior (two distinct lines), but experiments show an interference pattern, characteristic of waves. The act of measurement in this experiment fundamentally alters the outcome, a concept classical physics cannot explain.
+• Blackbody Radiation: Classical theories failed to account for the observed spectral distribution of radiation emitted by heated objects.
+• Photoelectric Effect: The ejection of electrons from metals by light could not be fully explained by the wave theory of light.
+• Compton Effect: The change in wavelength of X-rays scattered by electrons was inexplicable by classical wave theory.
+These failures highlighted the necessity for a new framework, leading to the development of quantum mechanics.
+Dual Nature of Radiation
+A fundamental concept introduced in Module 1 is the wave-particle duality of electromagnetic (EM) radiation.
+• Particles are characterized by mass, velocity, momentum, and energy, located at definite points in space.
+• Waves are described by frequency, wavelength, phase/wave velocity, amplitude, and intensity, and are spread out disturbances. It seems contradictory for radiation to possess both wave-like and particle-like properties, yet experimental evidence shows that radiation sometimes behaves as a wave (e.g., in interference and diffraction phenomena) and at other times as a particle (e.g., in blackbody radiation, photoelectric effect, and Compton effect). Importantly, radiation cannot exhibit both its particle and wave properties simultaneously.
+Young’s Double Slit Experiment
+Thomas Young's double-slit experiment in 1801 demonstrated the wave nature of light by showing an interference pattern when light passed through two narrow slits. Light from each slit diffracts, spreading out, and then interferes, creating alternating bright and dark fringes on a screen. This interference occurs constructively where waves are in phase and destructively where they are out of phase. Classically, if light were composed of particles, only two bright spots behind the slits would be expected.
+When the experiment is conducted with electrons, the results are even more remarkable and confirm wave-particle duality for matter.
+• Individual electrons are detected as discrete points on the screen, like classical particles.
+• However, after many electrons hit the screen, an interference pattern emerges, similar to that observed with light waves.
+• This suggests that each electron "interferes with itself" by seemingly passing through both slits simultaneously.
+• A crucial finding is that any attempt to observe which slit the electron passes through (e.g., by shining light on the slits) causes the interference pattern to disappear, and the distribution reverts to a classical two-spot pattern. This illustrates a fundamental quantum mechanical principle: measurements interfere with the states of microscopic objects, introducing indeterminism and contributing to Heisenberg's uncertainty principle.
+• The quantum mechanical explanation involves the superposition principle, where the wave functions for passing through each slit add together before the probability is calculated, leading to the observed interference terms.
+Blackbody Radiation
+Blackbody radiation refers to the electromagnetic radiation emitted by a blackbody, an idealized object that absorbs all incident radiation regardless of frequency. A laboratory approximation of a blackbody is a hollow cavity with a small hole. Key observations about blackbody spectra include:
+• The spectral distribution of energy depends only on the temperature of the body, not its material composition or shape.
+• Hotter objects emit more radiation overall (total energy density proportional to T^4, as described by the Stefan-Boltzmann Law: P = σT^4).
+• The peak of the radiation spectrum shifts to higher frequencies (shorter wavelengths) as temperature increases (Wien's Displacement Law: λ_max T = b).
+Classical theories, such as the Rayleigh-Jeans Law, attempted to explain blackbody radiation.
+• The Rayleigh-Jeans Law (u(ν)dν = (8πkBT/c^3)ν^2dν) worked well at low frequencies but predicted that energy would become infinite at high frequencies, a phenomenon known as the Ultraviolet Catastrophe.
+• Wien's Radiation Law fit the experimental data well at high frequencies but failed at low frequencies.
+Planck’s Hypothesis (1900) resolved the ultraviolet catastrophe and provided the foundation for quantum theory. Planck proposed that:
+• Energy exchange between matter and radiation occurs in discrete units or packets called quanta (or photons).
+• The energy of each quantum is directly proportional to its frequency: E = n hν, where 'n' is an integer (1, 2, 3...) and 'h' is Planck's constant (6.626 x 10^-34 J·s).
+• Oscillators in the blackbody cavity walls can only have energies that are integer multiples of hν. Planck's formula successfully matches experimental results at all frequencies and reduces to Rayleigh-Jeans law at low frequencies and Wien's law at high frequencies, thus solving the ultraviolet catastrophe.
+Photoelectric Effect
+The photoelectric effect is the phenomenon where light incident on a metal surface ejects electrons (photoelectrons). Key experimental observations include:
+• The kinetic energy of photoelectrons is independent of light intensity but depends on light frequency.
+• There exists a threshold frequency (and corresponding work function, φ); below this frequency, no electrons are ejected, regardless of light intensity.
+• The number of photoelectrons is proportional to light intensity.
+• The process is instantaneous.
+Einstein's explanation (1905), for which he received the Nobel Prize, attributed these observations to the particle nature of light. He proposed that light consists of photons, each carrying energy E = hν.
+• In the photoelectric process, a photon is completely absorbed by an electron.
+• The energy conservation equation for the photoelectric effect is: hf = 1/2mv^2_max + φ, where 1/2mv^2_max is the maximum kinetic energy of the ejected electron and φ is the work function (minimum energy to eject an electron). This theory successfully explained the experimental findings and provided strong evidence that light energy is quantized.
+Compton Effect
+The Compton effect provides further conclusive confirmation of the particle aspect of radiation. Discovered by A.H. Compton in 1923, it involves the scattering of X-rays off free electrons.
+• Classically, scattering should not change the wavelength of the incident radiation.
+• However, Compton observed that the wavelength of the scattered X-radiation was larger than the incident wavelength, a phenomenon known as the wavelength shift or Compton shift (Δλ). This shift depends only on the scattering angle, not the intensity.
+• Compton explained this by treating the interaction as an elastic collision between an incident photon and an electron that is initially at rest. The photon transfers part of its energy and momentum to the electron, causing the scattered photon to have lower energy and thus a longer wavelength.
+• The Compton scattering formula is: Δλ = λ' - λ = (h/m_e c)(1 - cosθ).
+    ◦ Here, 'h' is Planck's constant, 'm_e' is the rest mass of the electron, 'c' is the speed of light, and 'θ' is the scattering angle.
+    ◦ The term h/m_e c is known as the Compton wavelength (λ_C), with a value of approximately 2.43 × 10^-12 m for an electron.
+• The maximum Compton shift occurs at θ = 180° (backscattering), where Δλ = 2h/m_e c. The Compton effect demonstrated that photons, though massless, carry momentum, offering strong experimental support for the photon model.
+de Broglie Hypothesis
+Building upon the wave-particle duality of light, Louis de Broglie postulated in 1924 that all forms of matter also exhibit both wave and particle properties. This revolutionary idea introduced the concept of matter waves.
+• The de Broglie wavelength (λ) associated with a particle is inversely related to its momentum (p) by the equation: λ = h/p.
+• For a non-relativistic particle with mass 'm' and velocity 'v', p = mv, so λ = h/mv. If the kinetic energy is E_k, then λ = h/√(2mE_k).
+• For an electron accelerated through a potential difference V, its de Broglie wavelength is λ = 12.27/√V Å.
+• De Broglie also showed that his hypothesis could naturally explain Bohr's quantization rule for atomic energy levels: if electrons in circular orbits are treated as waves, the circumference of the orbit must accommodate an integral number of wavelengths (2πr = nλ).
+Properties of matter waves:
+• The lighter the particle, the greater its associated wavelength (λ ∝ 1/m).
+• Larger particle velocity results in a smaller wavelength (λ ∝ 1/v).
+• Matter waves are generated by the motion of particles; if v=0, λ → ∞, becoming indeterminate.
+• They are produced by both charged and uncharged particles, distinguishing them from EM waves.
+• The velocity of a matter wave is not constant and can be greater than the speed of light, which is understood in terms of phase velocity versus group velocity.
+• Wave-like properties are not observed for everyday macroscopic objects because their de Broglie wavelengths are extremely small.
+De Broglie's hypothesis was experimentally confirmed by the Davisson-Germer experiment (1927) and G.P. Thompson, which showed electron diffraction patterns when electrons passed through crystals, similar to X-ray diffraction. This provided direct evidence for the wave nature of electrons.
+Wavefunction (Ψ)
+In quantum mechanics, the behavior of a particle is described by a wave function, typically denoted by Ψ (Psi) or ψ (psi).
+• The wave function is a complex-valued function that depends on position (x, y, z or r⃗) and time (t).
+• It contains all the information about a quantum system, from which all dynamical physical quantities like linear momentum, angular momentum, and energy can be computed.
+• Physical Significance: While the wave function Ψ itself has no direct physical significance (it can be complex and oscillate between positive and negative values), its square of the absolute value, |Ψ|^2, represents the probability density of finding the particle at a given point in space and time. A large value of |Ψ|^2 indicates a high probability of finding the particle there.
+• It's important to remember that the wave function describes probabilities, not the particle itself. Even if the wave function is spread out, the particle, when detected, is found as a whole at a single point.
+Key properties/conditions for an acceptable and physically meaningful wave function:
+• Continuous: Ψ must be continuous everywhere.
+• Single-valued: For any given position and time, Ψ must have a unique value.
+• Normalizable: The integral of |Ψ|^2 over all space must equal 1 (i.e., the total probability of finding the particle somewhere in space is 100%). This requires Ψ to approach zero sufficiently fast as position tends to infinity.
+• Continuous Derivatives: The first derivatives of Ψ (and consequently, higher derivatives) must be continuous and single-valued. Discontinuities in derivatives would imply infinite momentum or energy, which is physically unrealistic.
+The Superposition Principle is another key idea: if a particle can be described by wave function Ψ1 in one situation and Ψ2 in another, then when both are possible, the total wave function is their sum, Ψ = Ψ1 + Ψ2. This leads to quantum interference effects that cannot be explained by classically adding probabilities.
+The evolution of the wave function with time is governed by the Schrödinger Equation, which plays a role analogous to Newton's second law in classical mechanics.
+• The time-dependent Schrödinger equation (in 1D) is: iℏ ∂ψ(x, t)/∂t = − (ℏ^2/2m) ∂^2ψ(x, t)/∂x^2 + V(x)ψ(x, t), where ℏ is the reduced Planck constant (h/2π), m is the particle's mass, and V(x) is the potential energy.
+• The time-independent Schrödinger equation is derived for systems with time-independent potential energy, leading to Hψ(x) = Eψ(x), where H is the Hamiltonian operator and E represents the energy eigenvalues.
+Stern-Gerlach Experiment
+The Stern-Gerlach experiment (1922) is a pivotal experiment demonstrating a peculiar feature of quantum mechanics: spin.
+• Setup: A beam of neutral silver atoms (which have a single unpaired electron in their outermost shell) is passed through a non-uniform magnetic field and then detected on a screen. The non-uniform field exerts a force on magnetic moments, deflecting them.
+• Classical Prediction: If atoms behaved classically, their magnetic moments (due to orbiting electrons) would be randomly oriented, leading to a continuous spread or smear on the detector screen.
+• Experimental Result: Surprisingly, the atomic beam splits into exactly two discrete spots – one deflected upwards and one downwards. This outcome directly contradicts classical physics.
+• Implication: Discovery of Spin: This discrete splitting demonstrated that the magnetic moment, and an intrinsic angular momentum called spin, of the electron can only take on two possible, quantized orientations along the direction of the magnetic field, typically referred to as "spin up" and "spin down". The z-component of spin (Sz) is quantized to ±ℏ/2.
+• This experiment was the first clear evidence for the quantization of angular momentum and highlighted the need for quantum mechanics. It also serves as a foundational model for a two-state quantum system, a basic concept in quantum computing (qubits). The magnetic moment of an electron is related to its spin by µ⃗ = −g ( e/2m ) S⃗.

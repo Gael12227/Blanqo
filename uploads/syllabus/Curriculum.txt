@@ -1,0 +1,34 @@
+Course Code Course Title L T P C Engineering Physics 3 0 2 4
+Pre-requisite Syllabus Version 1.0
+Course Objectives 1. Understand the origin and importance of quantum mechanics. 2. To study the principles of quantum mechanics 3. To apply quantum mechanics for the understanding of quantum computing
+Course Outcomes At the end of this course, the student will be able to
+1 Identify limitations of classical physics through experimental observations. 2 Apply matrix algebra and Dirac notation for the understanding of quantum
+mechanical problems involving linear operators, eigenvalues and eigenvectors.
+3 Solve the particle in 1-D and 3-D potential box problem using the principles of quantum mechanics.
+4 Apply fundamental concepts of quantum states and operators to understand the principles of quantum computing.
+5 Demonstrate quantum and optical phenomena through experiments and quantum operations through simulations.
+Module:1 Wave-Particle Duality 8 hours Dual nature of radiation – Young’s double slit experiment – Blackbody radiation – Planck’s hypothesis – de Broglie hypothesis – Wavefunction – Stern-Gerlach experiment. Module:2 Mathematical Foundations of Quantum Mechanics 10
+hours Introduction to linear vector space – Basis vectors – Orthonormal sets – Hilbert space - Representation of quantum states using Dirac notation – Inner and outer products – Tensor product of vector spaces – Linear operators – Matrix algebra – Hermitian, Unitary and Projection operators – Eigenvalues and eigenvectors – Pauli matrices – Commutation relations. Module:3 Postulates of Quantum Mechanics 8 hours Observables  Expectation values  Measurement in Quantum Mechanics – Sequential Stern-Gerlach Experiment – Time-dependent and time-independent Schrödinger equations. Module:4 Applications of Quantum Mechanics 7 hours Particle in a one-dimensional potential well – Extension to three-dimensional potential wells – Energy eigenvalues and eigenfunctions – Degeneracy of energy levels – Quantum tunneling phenomenon – Tunneling probability Module:5 Elements of Quantum Computing 10
+hours Introduction to qubits – Single qubit states and the Bloch Sphere – Two-qubit systems – Quantum entanglement and Bell states – Single-qubit gates: Pauli and Hadamard – Two-qubit gates: CNOT – Generation of entangled states. Module:6 Contemporary Topics 2 hours
+Total Lecture hours: 45 hours
+Text Books 1 D. J. Griffiths, Introduction to Quantum Mechanics, 2018, 3rd Edition,
+Cambridge University Press, India. 2 A. C. Philips, Introduction to Quantum Mechanics, 2014, Wiley India. Reference Books
+1. Robert Eisberg and Robert Resnick, Quantum Physics, 2004, 2nd Edition. Wiley India.
+2. Michael A. Nielsen and Isaac L. Chuang, Quantum Computation and Quantum Information, 2010, Cambridge Universities Press, India.
+Mode of Evaluation: Quiz, Assignment, CAT and FAT
+List of Challenging and Mini Projects - CHAMP (Indicative) 1. Exploring the wave nature of electrons through diffraction. 2. Determine the fundamental quantum constant through the analysis of
+semiconductor junction characteristics. 3. Elemental analysis through photoelectron spectroscopy. 4. Unveiling stellar composition through quantum simulations of hydrogen
+spectral lines. 5. Modeling time dependent behaviour of quantum wave packets. 6. Designing a solar cell based renewable energy device circuits for electric
+power generation. 7. Analyze photodiode I–V characteristics under different light intensities to
+extract device parameters. 8. Visualize the uncertainty principle by simulating position-momentum
+evolution of quantum wave packets. 9. Simulate the Schrödinger equation to demonstrate quantum superposition
+and state collapse. 10. Model tunneling through barriers of different profiles and study dependence
+on particle energy. 11. Visualize the Bloch sphere representation of a single qubit through
+simulation. 12. Demonstrate the fundamental operations of single-qubit quantum gates via
+simulation. 13. Simulating a 2-Qubit Quantum Gate (CNOT or Bell State Creation) 14. Simulate the superposition state of a single qubit using the Hadamard. 15. Generate and analyze Bell states using quantum circuit simulation.
+Total Laboratory Hours 30 hours
+Text Book(s) 1 .
+Michael A. Nielsen & Isaac L. Chuang, Quantum Computation and Quantum Information, 2010, Cambridge University Press, India
+Reference Books 1 .
+Aurthur Beiser, Concepts of Modern Physics, 2009, McGraw - Hill, 6th Edition, India
+Mode of assessment: Continuous assessment, FAT, Oral examination Recommended by Board of Studies
