@@ -1,4 +1,4 @@
-# BrainStormer (Minimal Starter)
+# Blanqo (Minimal Starter)
 
 A projector-friendly teaching whiteboard powered mostly by your uploaded notes.
 This minimal version uses **TF‑IDF** (no embeddings) to:
