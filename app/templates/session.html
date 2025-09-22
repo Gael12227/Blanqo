@@ -1,4 +1,4 @@
-<!doctype html>
+<!--<!doctype html>
 <html>
 <head>
   <meta charset="utf-8"/>
@@ -103,5 +103,116 @@
     <h3>Keyboard</h3>
     <p>←/→ jump sections • M mark covered • G generate MCQs • ? toggle help</p>
   </div>
+</body>
+</html>-->
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Session {{ sid }}</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+    <link rel="stylesheet" href="/static/session.css"/>
+    <script defer src="/static/session.js"></script>
+</head>
+<body class="session" data-sid="{{ sid }}">
+    <header class="session-header">
+        <h1>Session: {{ sess.name }} <span class="muted">({{ sid }})</span></h1>
+        <div class="meta-info">
+            <span class="muted kbd">F11 for full screen</span>
+            <a class="btn primary" href="/session/{{ sid }}/export">Export</a>
+        </div>
+    </header>
+
+    <main class="layout-grid">
+        <aside class="next-up">
+            <h3>Next Up</h3>
+            <ol>
+                {% for b in sess.blocks if not b.covered %}
+                <li><a href="#{{ b.id }}">{{ b.title }} <span class="muted">({{ b.minutes }}m)</span></a></li>
+                {% endfor %}
+            </ol>
+            <h3>Covered</h3>
+            <ul>
+                {% for b in sess.blocks if b.covered %}
+                <li>{{ b.title }}</li>
+                {% else %}
+                <li class="muted">None yet</li>
+                {% endfor %}
+            </ul>
+            {% if sess.syllabus_topics %}
+            <h3>Syllabus</h3>
+            <ul>
+                {% for t in sess.syllabus_topics %}
+                <li>{{ t }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </aside>
+
+        <section class="main-content">
+            {% for b in sess.blocks %}
+            <section id="{{ b.id }}" class="block{% if b.covered %} covered{% endif %}">
+                <div class="block-bar">
+                    <h2>{{ b.title }}</h2>
+                    <div class="spacer"></div>
+                    <span class="tag">{{ b.minutes }}m</span>
+                    <form method="post" action="/session/{{ sid }}/toggle-covered/{{ b.id }}">
+                        <button class="btn" type="submit">{% if b.covered %}Unmark{% else %}Mark covered{% endif %}</button>
+                    </form>
+                    <button class="btn outline gen" data-bid="{{ b.id }}">Generate MCQs</button>
+                </div>
+                <div class="frags">
+                    {% for f in b.fragments %}
+                    <article class="frag">
+                        <p>{{ f.text }}</p>
+                        <form method="post" action="/session/{{ sid }}/pin">
+                            <input type="hidden" name="text" value="{{ f.text | replace('"','&quot;') }}">
+                            <button class="btn small">Pin</button>
+                        </form>
+                    </article>
+                    {% endfor %}
+                </div>
+                {% if b.asked_mcqs %}
+                <details class="asked">
+                    <summary>Asked already ({{ b.asked_mcqs|length }})</summary>
+                    <ol>
+                        {% for q in b.asked_mcqs %}
+                        <li>{{ q.question }}</li>
+                        {% endfor %}
+                    </ol>
+                </details>
+                {% endif %}
+            </section>
+            {% endfor %}
+        </section>
+
+        <aside class="right-panel">
+            <section class="mcq-panel block">
+                <h2>MCQs Generated</h2>
+                <div class="mcq-list"></div>
+            </section>
+            
+            {% if sess.pins %}
+            <section class="pinned block">
+                <h2>Pinned Points</h2>
+                {% for p in sess.pins %}
+                <blockquote>
+                    {{ p.text }}
+                    <form method="post" action="/session/{{ sid }}/pin" class="inline">
+                        <input type="hidden" name="text" value="{{ p.text | replace('"','&quot;') }}">
+                        <button class="btn small outline">Unpin</button>
+                    </form>
+                </blockquote>
+                {% endfor %}
+            </section>
+            {% endif %}
+        </aside>
+    </main>
+
+    <div class="help" id="help" hidden>
+        <h3>Keyboard</h3>
+        <p>←/→ jump sections • M mark covered • G generate MCQs • ? toggle help</p>
+    </div>
 </body>
 </html>

@@ -35,11 +35,8 @@ def _chat_json(prompt: str, model: str = "gpt-4o-mini") -> Any:
         content = content.strip().strip("```").replace("json", "", 1)
         return json.loads(content)
 
-# --- public APIs
 def refine_plan(topics: List[str], minutes: int) -> List[Dict]:
-    """
-    Returns list[ {title, minutes, objective} ]
-    """
+
     prompt = f"""
     Topics: {topics}
     Total minutes: {minutes}
@@ -50,9 +47,6 @@ def refine_plan(topics: List[str], minutes: int) -> List[Dict]:
     return _chat_json(prompt)
 
 def mcqs_from_notes(topic: str, fragments: List[str], n: int = 4) -> List[Dict]:
-    """
-    Returns list[ {question, options, answer} ]
-    """
     joined = "\n\n".join(fragments[:6])
     prompt = f"""
     Topic: {topic}
@@ -65,9 +59,6 @@ def mcqs_from_notes(topic: str, fragments: List[str], n: int = 4) -> List[Dict]:
     return _chat_json(prompt)
 
 def missed_topics(syllabus: List[str], covered: List[str]) -> List[Dict]:
-    """
-    Returns list[ {topic, why} ] for top 3 uncovered.
-    """
     prompt = f"""
     Syllabus topics: {syllabus}
     Already covered: {covered}

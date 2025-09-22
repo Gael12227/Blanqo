@@ -1,4 +1,4 @@
-<!doctype html>
+<!--<!doctype html>
 <html>
 <head>
   <meta charset="utf-8"/>
@@ -21,7 +21,6 @@
   <main>
     <h1>Notes → Teaching Session</h1>
 
-    <!-- Start Session -->
     <form action="/start" method="post" enctype="multipart/form-data" autocomplete="off">
       <label>Session name (unique):
         <input type="text" name="session_name" required maxlength="120"
@@ -34,7 +33,7 @@
       </label>
 
       <label>Upload notes (.md, multiple):
-        <input type="file" name="notes" accept=".md" multiple required>
+        <input type="file" name="notes" accept=".md,.markdown,.pdf,.pptx" multiple required>
       </label>
 
       <label>Optional syllabus (.md/.txt lines):
@@ -71,5 +70,296 @@
       </ul>
     </section>
   </main>
+</body>
+</html> -->
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Notes → Teaching Session</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+    <style>
+        .home main {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 16px;
+        }
+
+        .sessions-section {
+            background: #11131a;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid #20283a;
+        }
+        
+        .sessions-section h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: var(--acc);
+            border-bottom: 2px solid var(--acc);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .sessions-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .sessions-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f131b;
+            border: 1px solid #20283a;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .sessions-list li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .sessions-list li a {
+            flex: 1 1 auto;
+            color: var(--fg);
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .sessions-list li .date {
+            font-size: 14px;
+            color: var(--muted);
+            margin-left: auto;
+        }
+
+        .sessions-list .inline-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .start-session-section {
+            background: #11131a;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid #20283a;
+        }
+
+        .start-session-section h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: var(--acc);
+            border-bottom: 2px solid var(--acc);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        form[action="/start"] {
+            display: grid;
+            gap: 20px;
+        }
+
+        .file-upload-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: grid;
+            gap: 8px;
+            font-size: 16px;
+            color: var(--muted);
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            background: #0b0e14;
+            color: var(--fg);
+            border: 1px solid #1f2636;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            outline: none;
+            border-color: var(--acc);
+            box-shadow: 0 0 0 3px rgba(90, 169, 255, 0.3);
+        }
+
+        .file-upload {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 2px dashed #2a3344;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+            transition: border-color 0.2s ease;
+        }
+
+        .file-upload:hover {
+            border-color: var(--acc);
+        }
+        
+        .file-upload input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--fg);
+        }
+
+        .file-upload-subtext {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .session-length-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .session-length-group label {
+            flex: 1;
+        }
+
+        .session-length-group span {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--acc);
+            min-width: 60px;
+            text-align: right;
+        }
+
+        input[type="range"] {
+          -webkit-appearance: none; /* For older WebKit browsers */
+          appearance: none; /* Standard property */
+          width: 100%;
+          height: 8px;
+          background: #2a3344;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          background: var(--acc);
+          border-radius: 50%;
+          border: 2px solid var(--fg);
+          transition: transform 0.2s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: var(--acc);
+        border-radius: 50%;
+        border: 2px solid var(--fg);
+        transition: transform 0.2s ease;
+        }
+
+        input[type="range"]:active::-webkit-slider-thumb {
+          transform: scale(1.1);
+        }
+
+        input[type="range"]:active::-moz-range-thumb {
+          transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="home">
+<main>
+    <section class="sessions-section">
+        <h2>Recent Sessions</h2>
+        <div class="sessions-list">
+            <ul>
+                {% for s in recent %}
+                <li>
+                    <a href="/session/{{ s.id }}">{{ s.name }}</a>
+                    <span class="muted date">{{ s.created_at }}</span>
+                    <form method="post" action="/session/{{ s.id }}/delete" class="inline-btn">
+                        <button class="btn small outline" onclick="return confirm('Delete this session?')">Delete</button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="muted">No sessions yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section class="start-session-section">
+        <h2>Start New Session</h2>
+        <form action="/start" method="post" enctype="multipart/form-data" autocomplete="off">
+            <label>Session name (unique):
+                <input type="text" name="session_name" required maxlength="120"
+                       placeholder="e.g., Microeconomics — Week 3">
+            </label>
+
+            <div class="session-length-group">
+                <label>Session length (minutes):
+                    <input id="len" type="range" name="minutes" min="15" max="120" step="5" value="30" aria-label="Session length in minutes">
+                </label>
+                <span id="lenv">30m</span>
+            </div>
+
+            <div class="file-upload-grid">
+                <div class="file-upload">
+                    <input type="file" name="notes" accept=".md,.markdown,.pdf,.pptx" multiple required>
+                    <span class="file-upload-label">Upload Notes</span>
+                    <span class="file-upload-subtext">.md, .pdf, .pptx</span>
+                </div>
+                <div class="file-upload">
+                    <input type="file" name="syllabus" accept=".md,.txt">
+                    <span class="file-upload-label">Optional Syllabus</span>
+                    <span class="file-upload-subtext">.md, .txt</span>
+                </div>
+                <div class="file-upload">
+                    <input type="file" name="question_bank" accept=".md,.txt">
+                    <span class="file-upload-label">Optional Question Bank</span>
+                    <span class="file-upload-subtext">.md, .txt</span>
+                </div>
+            </div>
+
+            <button class="primary" type="submit">Start Session</button>
+        </form>
+    </section>
+
+    <script>
+        const r = document.getElementById('len');
+        const v = document.getElementById('lenv');
+        if (r && v) r.addEventListener('input', () => v.textContent = r.value + 'm');
+    </script>
+</main>
 </body>
 </html>

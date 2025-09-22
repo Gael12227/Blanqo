@@ -5,12 +5,15 @@ from fastapi.responses import HTMLResponse, RedirectResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import List
-from datetime import datetime
+from datetime import datetime, date
+from .parsers import read_docs
+from . import llm
 
-from .planner import read_markdown_texts, chunk_fragments, extract_topics, plan_blocks, map_fragments_to_topic
+from .parsers import read_docs  
+from .planner import chunk_fragments, extract_topics, plan_blocks, map_fragments_to_topic
 from .qa import parse_bank, make_mcqs_from_fragments
-from .models import Fragment, PlanBlock, Session, MCQ
-from .storage import save_session, load_session, new_session_id
+from .models import Fragment, PlanBlock, Session, MCQ, Exam
+from .storage import save_session, load_session, new_session_id, load_exams, save_exams, new_exam_id
 
 app = FastAPI()
 BASE = os.getcwd()
@@ -59,15 +62,37 @@ def list_session_files():
 
 @app.get("/", response_class=HTMLResponse)
 def home(req: Request):
+    # sessions
     recent = []
     for path in sorted(list_session_files(), reverse=True)[:20]:
         with open(path, "r", encoding="utf-8", errors="ignore") as f:
             try:
                 data = json.load(f)
-                recent.append({"id": data["id"], "name": data.get("name", data["id"])})
+                recent.append({
+                    "id": data["id"],
+                    "name": data.get("name", data["id"]),
+                    "created_at": data.get("created_at", "")
+                })
             except Exception:
                 pass
-    return templates.TemplateResponse("home.html", {"request": req, "recent": recent})
+
+    # exams
+    exams = load_exams()
+    # sort by date ascending; only future 90 days for "upcoming"
+    def _parse(d):
+        try: return datetime.strptime(d, "%Y-%m-%d").date()
+        except: return date.max
+    today = date.today()
+    upcoming = sorted(
+        [e for e in exams if _parse(e.get("date","")) >= today],
+        key=lambda e: _parse(e.get("date",""))
+    )
+
+    return templates.TemplateResponse("home.html", {
+        "request": req,
+        "recent": recent,
+        "upcoming_exams": upcoming
+    })
 
 @app.post("/start")
 async def start(
@@ -98,10 +123,13 @@ async def start(
     if not note_paths:
         return PlainTextResponse("No notes were uploaded. Please add at least one .md file.", status_code=400)
 
-    docs = read_markdown_texts(note_paths)
+    docs = read_docs(note_paths)
     all_texts = [t for _, t in docs]
     if not any((t or "").strip() for t in all_texts):
         return PlainTextResponse("Uploaded notes appear empty or unreadable. Please upload valid .md files.", status_code=400)
+    
+    topics = extract_topics(all_texts, cap=8) or ["Session Overview"]
+
 
     frags = []
     for name, text in docs:
@@ -131,7 +159,7 @@ async def start(
     blocks = []
     frag_texts = [f.text for f in frags]
     for b in blocks_raw:
-        top_frags = map_fragments_to_topic(frag_texts, b["title"]) if frag_texts else []
+        top_frags = map_fragments_to_topic(frag_texts, b["title"])[:6] if frag_texts else []
         blocks.append(PlanBlock(id=b["id"], title=b["title"], minutes=b["minutes"],
                                 fragments=[Fragment(doc_id="notes", text=t) for t in top_frags]))
 
@@ -222,6 +250,89 @@ async def update_duration(sid: str, minutes: int = Form(...)):
         b.minutes = max(3, int(round(b.minutes * scale)))
     save_session(sess)
     return RedirectResponse(url=f"/session/{sid}", status_code=303)
+
+@app.post("/exams/add")
+def add_exam(title: str = Form(...), date_str: str = Form(...), topics: str = Form("")):
+    exams = load_exams()
+    eid = new_exam_id()
+    topic_list = [t.strip() for t in topics.split(",") if t.strip()]
+    exams.append({"id": eid, "title": title.strip(), "date": date_str.strip(), "topics": topic_list})
+    save_exams(exams)
+    return RedirectResponse(url="/", status_code=303)
+
+@app.post("/exams/delete/{eid}")
+def delete_exam(eid: str):
+    exams = load_exams()
+    exams = [e for e in exams if e.get("id") != eid]
+    save_exams(exams)
+    return RedirectResponse(url="/", status_code=303)
+
+def order_by_syllabus(topics: List[str], syllabus_topics: List[str]) -> List[str]:
+    """Return topics ordered by syllabus first (in given order), then leftovers."""
+    if not syllabus_topics:
+        return topics
+    lower_map = {t.lower(): t for t in topics}
+    ordered = []
+    seen = set()
+    # syllabus order (case-insensitive matches to extracted topics)
+    for s in syllabus_topics:
+        k = s.strip().lower()
+        if k in lower_map and k not in seen:
+            ordered.append(lower_map[k])
+            seen.add(k)
+    # leftovers
+    for t in topics:
+        if t not in seen:
+            ordered.append(t)
+    return ordered
+
+def boost_nearest_exam_topics(topics: List[str], exams: List[dict]) -> List[str]:
+    """Bring nearest exam topics to the front (keeping syllabus ordering within that subset)."""
+    if not exams:
+        return topics
+    # choose nearest upcoming exam
+    today = date.today()
+    def _parse(d):
+        try: return datetime.strptime(d, "%Y-%m-%d").date()
+        except: return None
+    future = [(e, _parse(e.get("date",""))) for e in exams]
+    future = [x for x in future if x[1] and x[1] >= today]
+    if not future:
+        return topics
+    nearest = sorted(future, key=lambda x: x[1])[0][0]
+    focus = [t.strip().lower() for t in nearest.get("topics", []) if t.strip()]
+    if not focus:
+        return topics
+
+    in_focus = []
+    others = []
+    for t in topics:
+        (in_focus if t.lower() in focus else others).append(t)
+    return in_focus + others
+
+def allocate_minutes_with_focus(blocks_raw: List[dict], focus_topics: List[str], total_minutes: int) -> List[dict]:
+    """Give +40% budget to focus topics, normalize total to requested minutes."""
+    if not blocks_raw:
+        return blocks_raw
+    base = 1.0
+    boost = 1.4
+    weights = []
+    for b in blocks_raw:
+        w = boost if b["title"].lower() in [ft.lower() for ft in focus_topics] else base
+        weights.append(w)
+    s = sum(weights) or 1.0
+    per_unit = total_minutes / s
+    out = []
+    for i, b in enumerate(blocks_raw):
+        mins = max(3, int(round(weights[i] * per_unit)))
+        out.append({"id": b["id"], "title": b["title"], "minutes": mins})
+    # tiny final normalization to hit the exact total
+    diff = total_minutes - sum(x["minutes"] for x in out)
+    if diff != 0:
+        # adjust the first block (or last) by the diff
+        idx = 0 if diff > 0 else -1
+        out[idx]["minutes"] = max(3, out[idx]["minutes"] + diff)
+    return out
 
 @app.get("/session/{sid}/export")
 def export_session(sid: str):

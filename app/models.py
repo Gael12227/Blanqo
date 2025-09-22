@@ -2,6 +2,12 @@ from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
 
+class Exam(BaseModel):
+    id: str
+    title: str
+    date: str           
+    topics: List[str] = []  
+
 class Fragment(BaseModel):
     doc_id: str
     text: str

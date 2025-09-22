@@ -1,0 +1,212 @@
+{
+  "id": "a92a477a07e5",
+  "name": "Physics",
+  "created_at": "2025-09-22 18:59",
+  "blocks": [
+    {
+      "id": "b1",
+      "title": "Consumer Theory",
+      "minutes": 8,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        }
+      ],
+      "covered": true,
+      "asked_mcqs": []
+    },
+    {
+      "id": "b2",
+      "title": "Preferences and Indifference Curves",
+      "minutes": 4,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        }
+      ],
+      "covered": true,
+      "asked_mcqs": []
+    },
+    {
+      "id": "b3",
+      "title": "Budget Constraints",
+      "minutes": 4,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        }
+      ],
+      "covered": false,
+      "asked_mcqs": []
+    },
+    {
+      "id": "b4",
+      "title": "Responsiveness Quantity",
+      "minutes": 4,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        }
+      ],
+      "covered": false,
+      "asked_mcqs": []
+    },
+    {
+      "id": "b5",
+      "title": "Quantity Demanded",
+      "minutes": 4,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        }
+      ],
+      "covered": false,
+      "asked_mcqs": []
+    },
+    {
+      "id": "b6",
+      "title": "Price Elasticity",
+      "minutes": 4,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        }
+      ],
+      "covered": false,
+      "asked_mcqs": []
+    },
+    {
+      "id": "b7",
+      "title": "Price Changes",
+      "minutes": 4,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        }
+      ],
+      "covered": false,
+      "asked_mcqs": []
+    },
+    {
+      "id": "b8",
+      "title": "Measures Responsiveness",
+      "minutes": 4,
+      "fragments": [
+        {
+          "doc_id": "notes",
+          "text": "Price elasticity of demand measures responsiveness of quantity demanded to price changes.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "Budget constraints limit choices.",
+          "page": 0
+        },
+        {
+          "doc_id": "notes",
+          "text": "# Consumer Theory Utility functions represent preferences.",
+          "page": 0
+        }
+      ],
+      "covered": false,
+      "asked_mcqs": []
+    }
+  ],
+  "syllabus_topics": [],
+  "pins": [
+    {
+      "doc_id": "notes",
+      "text": "# Consumer Theory Utility functions represent preferences.",
+      "page": 0
+    },
+    {
+      "doc_id": "notes",
+      "text": "Budget constraints limit choices.",
+      "page": 0
+    }
+  ]
+}
